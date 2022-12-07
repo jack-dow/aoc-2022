@@ -5,18 +5,12 @@ const signals = results.split("\n");
 
 signals.forEach((signal) => {
   const buffer = signal.split("");
+  const markerSize = 4;
 
-  let markerPosition = 0;
-
-  for (let i = 0; i < buffer.length - 3; i++) {
-    const marker = buffer.slice(i, i + 4).join("");
-
-    const uniqueChars = new Set(marker).size === marker.length;
-    if (uniqueChars) {
-      markerPosition = i + 4;
+  for (let i = markerSize; i < buffer.length; i++) {
+    if (new Set(buffer.slice(i - markerSize, i)).size === markerSize) {
+      console.log(i);
       break;
     }
   }
-
-  console.log(markerPosition);
 });

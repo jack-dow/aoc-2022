@@ -5,7 +5,6 @@ const signals = results.split("\n");
 
 signals.forEach((signal) => {
   const buffer = signal.split("");
-
   let markerPosition = 0;
 
   for (let i = 0; i < buffer.length - 13; i++) {
