@@ -15,23 +15,17 @@ let waitingInstructions: Array<() => boolean> = [];
 let toBeRunInstructions: Array<() => void> = [];
 
 for (let i = 0; i < cycleRunningLength; i++) {
-  //   console.log(`Start of ${cycle}`, { register });
   if (instructions.length > 0 && waitingInstructions.length === 0) {
     const instruction = instructions[0];
     instructions.splice(0, 1);
     const [command, value] = instruction.split(" ");
 
     switch (command) {
-      case "noop":
-        //   register += parseInt(value);
-        break;
       case "addx":
         waitingInstructions.push(createAddxInstruction(parseInt(value), cycle));
         break;
     }
   }
-
-  //   console.log(`During of ${cycle}`, { register });
 
   if (newLineCycles.includes(cycle)) {
     CRTScreen.push([]);
@@ -43,9 +37,6 @@ for (let i = 0; i < cycleRunningLength; i++) {
   }
 
   CRTScreen[CRTScreen.length - 1].push(spritePosition[currentSpritePosition]);
-
-  //   console.log(`End of ${cycle}`, { register });
-  //   console.log(" ");
 
   // @ts-expect-error - typescript doesn't infer properly
   waitingInstructions = waitingInstructions
@@ -67,7 +58,6 @@ function createAddxInstruction(value: number, currentCycle: number) {
     const initialCycle = currentCycle;
     if (cycle - initialCycle === 1) {
       toBeRunInstructions.push(() => {
-        // console.log("addx executed");
         register += value;
         spritePosition = spritePosition
           .split("")
