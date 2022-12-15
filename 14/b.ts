@@ -1,5 +1,6 @@
 export const x = "";
 
+const startTime = performance.now();
 const results = await Deno.readTextFile("./input.txt");
 const lines = results.split("\n");
 
@@ -79,3 +80,6 @@ while (!finished) {
 }
 
 console.log({ sandPositions: sandPositions.size });
+
+const endTime = performance.now();
+console.log(`Duration: ${endTime - startTime}ms`);
